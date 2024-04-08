@@ -18,6 +18,8 @@ This is a web application built with Flask for managing a blood bank system. It 
 
 ## admin details must be add manually
 
+## change the Database details and add your MySQL database details
+
 
 ## Installation
 
