@@ -16,6 +16,8 @@ This is a web application built with Flask for managing a blood bank system. It 
  - **SQLAlchemy==1.4.31
  - **mysqlclient==2.0.3
 
+## admin details must be add manually
+
 
 ## Installation
 
