@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ Donor.Name }}</title>
+    <link id="icon" rel="icon" href="{{ url_for('static', filename = 'images/icon.jpg') }}" type="images/jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        li {
+            list-style: none;
+        }
+        .navbar {
+            background-color: #f30707;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        .navbar img {
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        /* Container Styles */
+        .container {
+            justify-content: center;
+            margin-left: 10%;
+            right: 0;
+            width: 80vw;
+            height: 100vh;
+            background: #f1f1f1;
+        }
+
+        
+        .header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 80vw;
+            height: 10vh;
+            background: white;
+            flex: 1;
+            display: flex;
+            justify-content:space-between;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .brand-name h2 {
+            color: #f30707;
+            display: flex;
+            margin-left: 50px;
+        }
+
+        .user {
+            flex: 1;
+            display: flex;
+            margin-left: 600px;
+            align-items: center;
+        }
+
+        .btn {
+            background: #f30707;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+        }
+
+        .btn:hover {
+            color: #f30707;
+            background: white;
+            padding: 3px 8px;
+            border: 2px solid #f30707;
+        }
+
+        /* Content Styles */
+        .content {
+            position: relative;
+            margin-top: 10vh;
+            min-height: 90vh;
+            background: #f1f1f1;
+            padding: 20px;
+        }
+
+        .item {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+        }
+        .bottom{
+            background: #f30707;
+            color: white;
+            padding: 5px 10px;
+            display: inline-block;
+            text-align: space-between;
+            border-radius: 10px;
+            
+        }
+        .bottom:hover{
+            color: #f30707;
+            background: white;
+            padding: 3px 8px;
+            border: 2px solid #f30707;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        
+        }
+        #btn1{
+            display: flex;
+            margin-left: 30px;
+        }
+        #icon{
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a style="margin-bottom:5px ;" href="{{ url_for('home') }}"><img id="icon" src="{{ url_for('static', filename = 'images/images.jpg') }}" alt=""> I Donate Organisation</a>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('About') }}">About</a>
+        <a href="{{ url_for('Donation') }}">Fund Donation</a>
+        <a href="#contact">Contact</a>
+        <a href="{{ url_for('admin') }}">Admin</a>
+    </div>
+    
+    <div class="container">
+        <div class="content">
+            <div class="item">
+                <p>Donor Name</p>
+                <h2>{{ Donor.Name }}</h2>
+            </div>
+            <div class="item">
+                <p>Donor Blood Group </p>
+                <h2>{{ Donor.BloodGroup }}</h2>
+            </div>
+            <div class="item">
+                <p>Donor Phone </p>
+                <h2>{{ Donor.Phone }}</h2>
+            </div>
+            <div class="item">
+                <p>Donor Gender </p>
+                <h2>{{ Donor.Gender }}</h2>
+            </div>
+            <div class="item">
+                <p>Donor Address </p>
+                <h2>{{ Donor.Address }}</h2>
+            </div>
+            <div class="item">
+                <p>Donor District </p>
+                <h2>{{ Donor.District }}</h2>
+            </div>
+            <div class="item">
+                <p>Donor State </p>
+                <h2>{{ Donor.State }}</h2>
+            </div>
+            <div class="item">
+                <p>Donor Message </p>
+                <h2>{{ Donor.Message }}</h2>
+            </div>
+            <div class="button-container">
+                <div class="bottom" id="btn1">
+                    <a href='{{ url_for("user_active_Donors") }}'>Back</a>
+                </div>
+            </div>
+        </div>        
+    </div>
+</body>
+</html>

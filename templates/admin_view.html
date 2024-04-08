@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ Donor.Name }}</title>
+    <link id="icon" rel="icon" href="{{ url_for('static', filename = 'images/icon.jpg') }}" type="images/jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        /* Side Menu Styles */
+        .side-menu {
+            position: fixed;
+            background: #f30707;
+            width: 20vw;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+
+        .side-menu li {
+            font-size: 1.2rem;
+            padding: 1.2rem 2rem;
+            color: white;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .side-menu li:hover {
+            background: white;
+            color: #f05462;
+        }
+
+        /* Container Styles */
+        .container {
+            margin-left: 20vw;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: white;
+            height: 10vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .brand-name h2 {
+            color: #f30707;
+            display: flex;
+            align-items: center;
+        }
+
+        .btn {
+            background: #f30707;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #d30707;
+        }
+
+        /* Content Styles */
+        .content {
+            margin-top: 10vh;
+            background: #f1f1f1;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .item {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .bottom {
+            background: #f30707;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 10px;
+            text-align: center;
+             /* Adjust button width */
+        }
+
+        .bottom:hover {
+            background: white;
+            color: #f30707;
+            border: 2px solid #f30707;
+            padding: 3px 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="side-menu">
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('admin_active_Donors', filter='None') }}">Active Donors</a></li>
+            <li><a href="{{ url_for('donation_recived') }}">Donation Fund</a></li>
+            <li><a onclick="return confirm('Do you want logout?');" href="{{ url_for('logout') }}">log Out</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="brand-name">
+                <h2><i class="fas fa-hand-holding-heart"></i>I Donation Organisation</h2>
+            </div>
+            <div class="user">
+                <a onclick="return confirm('Do you want logout?');" href="{{ url_for('logout') }}" class="btn">Log Out</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="item">
+                <p>Donor Name</p>
+                <h2>{{ Donor.Name }}</h2>
+            </div>
+            <div class="item">
+                <p>Donor Blood Group</p>
+                <h2>{{ Donor.BloodGroup }}</h2>
+            </div>
+            <div class="item">
+                <p>Donor Phone</p>
+                <h2>{{ Donor.Phone }}</h2>
+            </div>
+            <div class="item">
+                <p>Donor Gender</p>
+                <h2>{{ Donor.Gender }}</h2>
+            </div>
+            <div class="item">
+                <p>Donor Address</p>
+                <h2>{{ Donor.Address }}</h2>
+            </div>
+            <div class="item">
+                <p>Donor District</p>
+                <h2>{{ Donor.District }}</h2>
+            </div>
+            <div class="item">
+                <p>Donor State</p>
+                <h2>{{ Donor.State }}</h2>
+            </div>
+            <div class="item">
+                <p>Donor Message</p>
+                <h2>{{ Donor.Message }}</h2>
+            </div>
+            <div class="button-container">
+                <div class="bottom">
+                    <a href='{{ url_for("dashboard",filter = "None") }}'>Back</a>
+                </div>
+                <div class="bottom">
+                    <a onclick="return confirm('Do you want Remove The Donor?');" href="{{ url_for('del_active_donor',id = Donor.id) }}">Remove Donor</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

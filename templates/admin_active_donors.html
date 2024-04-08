@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Donors</title>
+    <link id="icon" rel="icon" href="{{ url_for('static', filename = 'images/icon.jpg') }}" type="image/jpg">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Side Menu Styles */
+        .side-menu {
+            position: fixed;
+            background: #f30707;
+            width: 20vw;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: width 0.3s ease;
+            z-index: 1000; /* Ensure the menu is on top of other elements */
+        }
+        a{
+            text-decoration: none;
+            color: #333;
+        }
+
+        .side-menu .brand-name {
+            height: 10vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .side-menu li {
+            font-size: 1.2rem;
+            padding: 1.2rem 2rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .side-menu li:hover {
+            background: white;
+            color: #f05462;
+        }
+
+        /* Content Container */
+        .content-container {
+            margin-left: 20vw; /* Ensure content doesn't overlap with side menu */
+            padding: 20px;
+        }
+
+        /* Donor Table Styles */
+        .donor-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .donor-table th, .donor-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .donor-table th {
+            background-color: #f30707;
+            color: white;
+            font-weight: bold;
+        }
+
+        .donor-table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .donor-table tbody tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        .donor-table a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .donor-table a:hover {
+            color: #f30707;
+            text-decoration: underline;
+        }
+
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        h2 {
+            color: #f30707;
+            margin-bottom: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .user {
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-name h2 {
+            color: #f30707;
+            margin-right: 20px;
+        }
+
+        .btn {
+            background-color: #f30707;
+            color: white;
+            padding: 5px 15px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #d30707;
+        }
+        #btnn{
+            margin-top: 8px;
+            margin-left: 92%;
+        }
+    </style>
+</head>
+<body>
+    <div class="side-menu">
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('admin_active_Donors', filter = 'None') }}">Active Donors</a></li>
+            <li><a href="{{ url_for('donation_recived') }}">Donation Fund</a></li>
+            <li><a href="{{ url_for('admin_view_feedback') }}">Users Feedback</a></li>
+            <li><a onclick="return confirm('Do you want logout?');" href="{{ url_for('logout') }}">log Out</a></li>
+        </ul>
+    </div>
+    <div class="content-container">
+        <div class="header">
+            <div class="brand-name">
+                <h2><i class="fas fa-hand-holding-heart"></i> I Donation Organisation</h2>
+            </div>
+            <div class="user">
+                <a onclick="return confirm('Do you want logout?');" href="{{ url_for('logout') }}" class="btn">log Out</a>
+            </div>
+        </div>
+        <div class="container">
+            <h2>Active Donors</h2>
+            <table class="donor-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Blood Group</th>
+                        <th>Location</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for donor in Donor %}
+                    <tr>
+                        <td>{{ donor.Name }}</td>
+                        <td>{{ donor.BloodGroup }}</td>
+                        <td>{{ donor.District }}</td>
+                        <td><a href="{{ url_for('admin_view', id=donor.id) }}" class="donor-details">View Details</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{{ url_for('dashboard') }}" class="btn" id="btnn">Back</a>
+        </div>
+    </div>
+</body>
+</html>

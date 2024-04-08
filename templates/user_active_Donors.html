@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Donors</title>
+    <link id="icon" rel="icon" href="{{ url_for('static', filename = 'images/icon.jpg') }}" type="image/jpg">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Navbar Styles */
+        .navbar {
+            background-color: #f30707;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        .navbar img {
+            height: 30px;
+            margin-right: 10px;
+        }
+        .donor-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .donor-table th, .donor-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .donor-table th {
+            background-color: #f30707;
+            color: white;
+            font-weight: bold;
+        }
+
+        .donor-table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .donor-table tbody tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        .donor-table a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .donor-table a:hover {
+            color: #f30707;
+            text-decoration: underline;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #20212b;
+            color: #fff;
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .footer p, .footer a {
+            margin-bottom: 10px;
+        }
+
+        .footer .icon {
+            margin-right: 10px;
+        }
+
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        h2 {
+            color: #f30707;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        
+        #contact {
+            background-color: #20212b;
+            color: #fff;
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-info {
+            padding-right: 40px;
+            max-width: 400px;
+        }
+
+        .contact-info h2 {
+            color: #f30707;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+        }
+
+        .social-icons {
+            font-size: 24px;
+        }
+        .contact-box{
+            display: flex;
+            justify-content: right;
+            
+            padding: 20px;
+            
+            
+        }
+        #contact-madurai{
+            margin-left: 200px;
+        }
+        .icon-social-icons i {
+            margin-right: 10px;
+        }
+
+        #links {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: -25px;
+        }
+
+        #links h2 {
+            color: #f30707;
+            margin-left: -4px;
+
+
+        }
+
+        .link {
+            color: #fff;
+            text-decoration: none;
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .link:hover {
+            color: #f30707;
+        }
+        #button{
+            background: #f30707;
+            color: white;
+            padding: 2px 20px;
+            width: 100px;
+            border-radius: 10px;
+            margin-left: 20%;
+            
+           
+        }
+        .filter-options{
+            display: flex;
+        }
+        #blood-group-filter,#district-filter{
+            height: 23px;
+        }
+        
+  #contact_inf{
+    padding: 30px;
+    background-color: #202127;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    h2{
+        color: red;
+    }
+    p{
+        color: white;
+    }
+  }
+
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename = 'images/images.jpg') }}" alt=""> I Donate Organisation</a>
+    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('About') }}">About</a>
+    <a href="{{ url_for('Donation') }}">Fund Donation</a>
+    <a href="#contact">Contact</a>
+    <a href="{{ url_for('admin') }}">Admin</a>
+</div>
+
+<div class="container">
+        <form action="/user_active_Donors" method="post">
+            <div class="container">
+                <h2>Active Donors</h2>
+                <div class="filter-options">
+                    <label for="blood-group-filter">Filter by Blood Group:</label>
+                    <select id="blood-group-filter" name="BloodGroup">
+                        <option value="None">All Blood Groups</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                    </select>
+                    <label for="district-filter">Filter by District:</label>
+                    <select id="district-filter" name="District">
+                        <option value="None">All District</option>
+                        <option value="Ariyalur">Ariyalur</option>
+                        <option value="Chengalpattu">Chengalpattu</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Coimbatore">Coimbatore</option>
+                        <option value="Cuddalore">Cuddalore</option>
+                        <option value="Dharmapuri">Dharmapuri</option>
+                        <option value="Dindigul">Dindigul</option>
+                        <option value="Erode">Erode</option>
+                        <option value="Kallakurichi">Kallakurichi</option>
+                        <option value="Kancheepuram">Kancheepuram</option>
+                        <option value="Kanyakumari">Kanyakumari</option>
+                        <option value="Karur">Karur</option>
+                        <option value="Krishnagiri">Krishnagiri</option>
+                        <option value="Madurai">Madurai</option>
+                        <option value="Nagapattinam">Nagapattinam</option>
+                        <option value="Namakkal">Namakkal</option>
+                        <option value="Nilgiris">Nilgiris</option>
+                        <option value="Perambalur">Perambalur</option>
+                        <option value="Pudukkottai">Pudukkottai</option>
+                        <option value="Ramanathapuram">Ramanathapuram</option>
+                        <option value="Ranipet">Ranipet</option>
+                        <option value="Salem">Salem</option>
+                        <option value="Sivaganga">Sivaganga</option>
+                        <option value="Tenkasi">Tenkasi</option>
+                        <option value="Thanjavur">Thanjavur</option>
+                        <option value="Theni">Theni</option>
+                        <option value="Thoothukudi">Thoothukudi</option>
+                        <option value="Tiruchirappalli">Tiruchirappalli</option>
+                        <option value="Tirunelveli">Tirunelveli</option>
+                        <option value="Tirupathur">Tirupathur</option>
+                        <option value="Tiruppur">Tiruppur</option>
+                        <option value="Tiruvallur">Tiruvallur</option>
+                        <option value="Tiruvannamalai">Tiruvannamalai</option>
+                        <option value="Tiruvarur">Tiruvarur</option>
+                        <option value="Vellore">Vellore</option>
+                        <option value="Viluppuram">Viluppuram</option>
+                        <option value="Virudhunagar">Virudhunagar</option>
+                    </select>
+                    <input id="button" type="submit" value="filter">
+                </div>
+            </form>    
+        <table class="donor-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Blood Group</th>
+                    <th>Location</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if Donor %}
+                {% for donor in Donor %}
+                <tr>
+                    <td>{{donor.Name}}</td>
+                    <td>{{donor.BloodGroup}}</td>
+                    <td>{{donor.District}}</td>
+                    <td><a href="{{ url_for( 'user_view',id = donor.id )}}" class="donor-details">View Details</a></td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="4" style="text-align: center;">Sorry! No donar available</td>
+                </tr>
+                {% endif %}
+
+            </tbody>
+        </table>
+    </div>
+    
+</div>
+<div id="contact_inf">
+    <div class="contact-inf">
+      <h2>Tirunelveli</h2>
+      <p>2/18 Near STC College,<br> Tirunelveli - 627 001, Tamilnadu</p>
+      <p>Phone : <a href="tel:+919750066171" class="link">+91 9750 066 171</a></p>
+      <p>Email : <a href="mailto:tvliblood@donation.org.in" class="link">iblood@donation.org.in</a></p>
+    </div>
+    <div class="contact-inf" id="madurai">
+      <h2>Madurai</h2>
+      <p>2/18 American college College,<br> Madurai - 627 434, Tamilnadu</p>
+      <p>Phone : <a href="tel:+919042757290" class="link">+91 9042 757 290</a></p>
+      <p>Email : <a href="mailto:madiblood@donation.org.in" class="link">iblood@donation.org.in</a></p>
+    </div>
+    <div id="link">
+      <h2>Quick Links</h2>
+      <a class="link" href="{{ url_for('home') }}">Home</a><br>
+      <a class="link" href="{{ url_for('About') }}">About Us</a><br>
+      <a class="link" href="{{ url_for('feedback') }}">Feedback</a><br>
+      <a class="link" href="{{ url_for('Donation') }}">Fund Donate</a><br>
+      <a class="link" href="{{ url_for('blood_Donor') }}">Blood Donate Now</a><br>
+      <a class="link" href="{{ url_for('user_active_Donors') }}">Need Blood Donor</a>
+    </div>
+
+</body>
+</html>
+

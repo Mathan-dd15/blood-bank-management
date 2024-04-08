@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blood Bank Form</title>
+<link id="icon" rel="icon" href="{{ url_for('static', filename = 'images/icon.jpg') }}" type="images/jpg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    form {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+    input:valid {
+        border-color: #ccc;
+    }
+
+</style>
+</head>
+<body>
+
+<h2>Blood Donation Form</h2>
+
+<form action="/add_donor_details" method="post">
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name" required><br>
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email" required><br>
+  <label for="gender">Gender:</label><br>
+  <select id="gender" name="gender">
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+    <option value="other">Other</option>
+  </select><br>
+  <label for="address">Address:</label><br>
+  <textarea id="address" name="address" required></textarea><br>
+  <label for="state">State:</label><br>
+  <input type="text" id="state" name="state" value="Tamil Nadu" readonly><br>
+  <label for="district">District:</label><br>
+  <select id="district" name="district" required>
+    <option value="">Select District</option>
+    <option value="Ariyalur">Ariyalur</option>
+    <option value="Chengalpattu">Chengalpattu</option>
+    <option value="Chennai">Chennai</option>
+    <option value="Coimbatore">Coimbatore</option>
+    <option value="Cuddalore">Cuddalore</option>
+    <option value="Dharmapuri">Dharmapuri</option>
+    <option value="Dindigul">Dindigul</option>
+    <option value="Erode">Erode</option>
+    <option value="Kallakurichi">Kallakurichi</option>
+    <option value="Kancheepuram">Kancheepuram</option>
+    <option value="Kanyakumari">Kanyakumari</option>
+    <option value="Karur">Karur</option>
+    <option value="Krishnagiri">Krishnagiri</option>
+    <option value="Madurai">Madurai</option>
+    <option value="Nagapattinam">Nagapattinam</option>
+    <option value="Namakkal">Namakkal</option>
+    <option value="Nilgiris">Nilgiris</option>
+    <option value="Perambalur">Perambalur</option>
+    <option value="Pudukkottai">Pudukkottai</option>
+    <option value="Ramanathapuram">Ramanathapuram</option>
+    <option value="Ranipet">Ranipet</option>
+    <option value="Salem">Salem</option>
+    <option value="Sivaganga">Sivaganga</option>
+    <option value="Tenkasi">Tenkasi</option>
+    <option value="Thanjavur">Thanjavur</option>
+    <option value="Theni">Theni</option>
+    <option value="Thoothukudi">Thoothukudi</option>
+    <option value="Tiruchirappalli">Tiruchirappalli</option>
+    <option value="Tirunelveli">Tirunelveli</option>
+    <option value="Tirupathur">Tirupathur</option>
+    <option value="Tiruppur">Tiruppur</option>
+    <option value="Tiruvallur">Tiruvallur</option>
+    <option value="Tiruvannamalai">Tiruvannamalai</option>
+    <option value="Tiruvarur">Tiruvarur</option>
+    <option value="Vellore">Vellore</option>
+    <option value="Viluppuram">Viluppuram</option>
+    <option value="Virudhunagar">Virudhunagar</option>
+  </select><br>
+  <label for="phone">Phone Number:</label><br>
+  <input type="text" id="phone" name="phone" required><br>
+  <label for="bloodgroup">Blood Group:</label><br>
+  <select id="bloodgroup" name="bloodgroup" required>
+    <option value="A+">A+</option>
+    <option value="A-">A-</option>
+    <option value="B+">B+</option>
+    <option value="B-">B-</option>
+    <option value="AB+">AB+</option>
+    <option value="AB-">AB-</option>
+    <option value="O+">O+</option>
+    <option value="O-">O-</option>
+  </select><br>
+  <label for="message">Message:</label><br>
+  <textarea id="message" name="message"></textarea><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

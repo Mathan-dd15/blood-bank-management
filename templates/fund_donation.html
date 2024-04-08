@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fund Donation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa; /* Light gray background */
+    }
+
+    header {
+      background-color: #f30707; /* Red header */
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    }
+
+    .data,
+    form textarea,
+    button {
+      display: block;
+      margin-bottom: 15px;
+      width: calc(100% - 20px);
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ced4da; /* Light gray border */
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #f30707;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ca2f3c; /* Darker red on hover */
+    }
+
+    footer {
+      background-color: #f30707; /* Red footer */
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    
+
+    #paymentButtons {
+      display: flex;
+      flex-direction: column; /* Align payment options vertically */
+    }
+
+    #paymentButtons label {
+      margin-bottom: 10px;
+    }
+
+    #paymentButtons button {
+      width: 100%;
+    }
+
+    #paymentStatus {
+      display: none;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #d4edda; /* Green background for success message */
+      border: 1px solid #c3e6cb; /* Green border */
+      border-radius: 5px;
+    }
+
+    #paymentOptions{
+        padding: 20px;
+    }
+    
+
+    .radio-label {
+      margin-right: 10px;
+    }
+
+    .radio-input {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Fund Donation</h1>
+</header>
+
+<div class="container">
+  <form id="donationForm" action="/payment" method="post">
+    <label for="name">Your Name:</label>
+    <input class="data" name="name" type="text" id="name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" class="data" id="email" required>
+
+    <label for="amount">Donation Amount (₹):</label>
+    <input type="number" id="amount" name="amount" class="data" min="1" required>
+
+    <label for="message">Message (Optional):</label>
+    <textarea id="message" rows="4" name="message"></textarea>
+
+    <!-- Heading for payment options -->
+    <h2>Select Payment Option:</h2>
+    
+    <!-- Payment method selection -->
+    <div id="paymentOptions" class="radio-group">
+      <label class="radio-label"><input type="radio" name="paymentMethod" class="radio-input" value="UPI"> UPI</label>
+      <label class="radio-label"><input type="radio" name="paymentMethod" class="radio-input" value="Credit_Card"> Credit Card</label>
+      <label class="radio-label"><input type="radio" name="paymentMethod" class="radio-input" value="Debit_Card"> Debit Card</label>
+    </div>
+
+    <button type="submit">Donate Now</button>
+  </form>
+</div>
+
+<footer>
+  <p>Contact us at: <a href="mailto:iblood@donation.org.in">iblood@donation.org.in</a></p>
+</footer>
+
+</body>
+</html>

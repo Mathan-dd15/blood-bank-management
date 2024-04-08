@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="styles.css">
+    <link id="icon" rel="icon" style="border-radius: 50%;" href="{{ url_for('static', filename = 'images/icon.jpg') }}" type="images/jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bootstrap.min.css') }}">
+    <style>
+        
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: #f9f9f9; /* Change background color */
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 0 20px;
+}
+
+/* Header Styles */
+
+a{
+    text-decoration: none;
+    color: #333;
+}
+.navbar {
+    background-color: #f30707;
+        color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        .navbar img {
+            height: 30px;
+            margin-right: 10px;
+        }
+
+#about h2 {
+    color: #f30707;
+}
+
+/* Donate Section Styles */
+#donate h2 {
+    color: #f30707;
+}
+
+button {
+    background-color: #f30707;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: #d60606;
+}
+
+/* FAQ Section Styles */
+.faq-section {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.faq-section h2 {
+    color: #f30707;
+}
+
+.faq-list {
+    list-style: none;
+    padding: 0;
+}
+
+.faq-question {
+    font-weight: bold;
+}
+
+/* Contact Section Styles */
+#contact {
+    background-color: #20212b;
+    color: #fff;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact-info {
+    max-width: 400px;
+}
+
+.contact-info h2 {
+    color: #f30707;
+}
+h3{
+    color: #f30707;
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+}
+
+.social-icons {
+    font-size: 24px;
+}
+
+.icon-social-icons i {
+    margin-right: 10px;
+}
+
+#links {
+    margin-top: -25px;
+}
+
+#links h2 {
+    color: #f30707;
+    margin-left: -4px;
+}
+
+.link {
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.link:hover {
+    color: #f30707;
+}
+#contact_inf{
+    padding: 30px;
+    background-color: #202127;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    h2{
+        color: red;
+    }
+    p{
+        color: white;
+    }
+  }
+
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename = 'images/images.jpg') }}" alt=""> I Donate Organisation</a>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="#about">About</a>
+        <a href="{{ url_for('Donation') }}">Fund Donation</a>
+        <a href="#contact">Contact</a>
+        <a href="{{ url_for('admin') }}">Admin</a>
+    </div>
+
+    <div class="container">
+
+
+        <section id="about">
+            <h2>About Blood Donation</h2>
+            <p>Blood donation is a crucial aspect of modern healthcare systems worldwide. It plays a vital role in saving lives and improving the health outcomes of patients in need. Every day, individuals undergo medical procedures, surgeries, and treatments that require blood transfusions to replenish lost blood or to provide essential components necessary for recovery. However, the availability of safe and compatible blood is not always guaranteed, highlighting the critical need for regular blood donations.</p>
+            <h3>Understanding the Blood Donation Process</h3>
+            <p>The blood donation process is a simple yet impactful act that can make a significant difference in someone's life. It typically involves several steps, starting with registration and screening to ensure the donor's eligibility. During screening, medical professionals assess various factors such as the donor's health history, vital signs, and hemoglobin levels to ensure the safety of both the donor and the recipient.</p>
+            <!-- Add more content sections as needed -->
+        </section>
+
+        <section id="donate">
+            <h2>Donate Blood, Save Lives</h2>
+            <p>Your blood donation can save lives. Every drop counts! Donating blood is a simple and noble act that can make a big difference in someone's life.</p>
+            <p>Find out if you are eligible to donate and schedule an appointment at our blood bank today. Your generosity can help patients undergoing surgeries, trauma victims, cancer patients, and individuals with blood disorders.</p>
+            <button><a href="{{ url_for( 'blood_Donor' ) }}">Donate Now</a></button>
+        </section>
+    </div>
+
+    <div class="faq-section">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <ul class="faq-list">
+                <li>
+                    <div class="faq-question">How often can I donate blood?</div>
+                    <div class="faq-answer">You can donate blood every 56 days for whole blood donations or every 112 days for double red cell donations.</div>
+                </li>
+                <li>
+                    <div class="faq-question">Is blood donation safe?</div>
+                    <div class="faq-answer">Yes, blood donation is safe. All equipment used is sterile, and the donation process is closely monitored by trained professionals.</div>
+                </li>
+                <li>
+                    <div class="faq-question">Are there any age restrictions for blood donation?</div>
+                    <div class="faq-answer">In most countries, you must be at least 17 years old to donate blood. Some states may allow 16-year-olds to donate with parental consent.</div>
+                </li>
+                <li>
+                    <div class="faq-question">Can I donate blood if I have a cold?</div>
+                    <div class="faq-answer">No, if you have a cold or any other illness, you should wait until you have fully recovered before donating blood to ensure the safety of both you and the recipient.</div>
+                </li>
+                <li>
+                    <div class="faq-question">How long does the blood donation process take?</div>
+                    <div class="faq-answer">The blood donation process typically takes about 10-15 minutes, not including the time for registration and post-donation refreshments.</div>
+                </li>
+                <li>
+                    <div class="faq-question">Can I donate blood if I have a tattoo?</div>
+                    <div class="faq-answer">In most cases, you can donate blood after getting a tattoo, as long as it was done at a licensed facility and you wait at least 3 months before donating.</div>
+                </li>
+                <li>
+                    <div class="faq-question">What is the minimum weight requirement for blood donation?</div>
+                    <div class="faq-answer">The minimum weight requirement for blood donation is typically 110 pounds (50 kilograms).</div>
+                </li>
+                <li>
+                    <div class="faq-question">Can I donate blood if I have diabetes?</div>
+                    <div class="faq-answer">In most cases, individuals with diabetes can donate blood as long as their condition is well-controlled and they meet other eligibility criteria. However, it's essential to consult with healthcare professionals and inform the blood bank staff about your medical history before donating.</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="contact_inf">
+        <div class="contact-inf">
+          <h2>Tirunelveli</h2>
+          <p>2/18 Near STC College,<br> Tirunelveli - 627 001, Tamilnadu</p>
+          <p>Phone : <a href="tel:+919750066171" class="link">+91 9750 066 171</a></p>
+          <p>Email : <a href="mailto:tvliblood@donation.org.in" class="link">iblood@donation.org.in</a></p>
+        </div>
+        <div class="contact-inf" id="madurai">
+          <h2>Madurai</h2>
+          <p>2/18 American college College,<br> Madurai - 627 434, Tamilnadu</p>
+          <p>Phone : <a href="tel:+919042757290" class="link">+91 9042 757 290</a></p>
+          <p>Email : <a href="mailto:madiblood@donation.org.in" class="link">iblood@donation.org.in</a></p>
+        </div>
+        <div id="link">
+          <h2>Quick Links</h2>
+          <a class="link" href="{{ url_for('home') }}">Home</a><br>
+          <a class="link" href="{{ url_for('About') }}">About Us</a><br>
+          <a class="link" href="{{ url_for('feedback') }}">Feedback</a><br>
+          <a class="link" href="{{ url_for('Donation') }}">Fund Donate</a><br>
+          <a class="link" href="{{ url_for('blood_Donor') }}">Blood Donate Now</a><br>
+          <a class="link" href="{{ url_for('user_active_Donors') }}">Need Blood Donor</a>
+        </div>
+  
+    
+</body>
+</html>
+
+               

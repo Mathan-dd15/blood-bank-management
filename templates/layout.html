@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood bank-{% block title %}{% endblock %}</title>
+    <link id="icon" rel="icon" href="{{ url_for('static', filename = 'images/icon.jpg') }}" type="images/jpg">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  
+</head>
+  <div class="navbar" style="position: sticky; top: 0%;z-index: 1;display: flex;;" >
+      <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename = 'images/images.jpg') }}" alt=""> I Donate Organisation</a>
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="#Aboutus">About</a>
+      <a href="{{ url_for('Donation') }}">Fund Donation</a>
+      <a href="#contact_inf">Contact</a>
+      <a href="{{ url_for('admin') }}">Admin</a>
+  </div>
+    {%block body%}{% endblock %}
+
+    <img src="{{url_for('static',filename = 'images/bottom-bg.png')}}" alt="" width="100%">
+    <!-- <div id="contact">
+      <div class="contact-box">
+        <div class="contact-info">
+          <h2>Tirunelveli</h2>
+          <p>2/18 Near STC College,<br> Tirunelveli - 627 001, Tamilnadu</p>
+          <p>Phone : <a href="tel:+919750066171" class="link">+91 9750 066 171</a></p>
+          <p>Email : <a href="mailto:tvliblood@donation.org.in" class="link">iblood@donation.org.in</a></p>
+          <p style="color:#f30707; ;">Social Media</p>
+          <span class="icon-social-icons"><i class="fab fa-facebook"></i></span>
+          <span class="icon-social-icons"><i class="fab fa-instagram"></i></span>
+          <span class="icon-social-icons"><i class="fab fa-twitter"></i></span>
+          <span class="icon-social-icons"><i class="fab fa-google"></i></span>
+        </div>
+        <div class="contact-info" id="contact-madurai">
+          <h2>Madurai</h2>
+          <p>2/18 American college College,<br> Madurai - 627 434, Tamilnadu</p>
+          <p>Phone : <a href="tel:+919042757290" class="link">+91 9042 757 290</a></p>
+          <p>Email : <a href="mailto:madiblood@donation.org.in" class="link">iblood@donation.org.in</a></p>
+        </div>
+      </div>  
+        <div id="links">
+          <h2>Quick Links</h2>
+          <a class="link" href="{{ url_for('home') }}">Home</a><br>
+          <a class="link" href="{{ url_for('About') }}">About Us</a><br>
+          <a class="link" href="{{ url_for('feedback') }}">Feedback</a><br>
+          <a class="link" href="{{ url_for('Donation') }}">Fund Donate</a><br>
+          <a class="link" href="{{ url_for('blood_Donor') }}">Blood Donate Now</a><br>
+          <a class="link" href="{{ url_for('user_active_Donors') }}">Need Blood Donor</a>
+        </div>
+    </div> -->
+    <div id="contact_inf">
+      <div class="contact-inf">
+        <h2>Tirunelveli</h2>
+        <p>2/18 Near STC College,<br> Tirunelveli - 627 001, Tamilnadu</p>
+        <p>Phone : <a href="tel:+919750066171" class="link">+91 9750 066 171</a></p>
+        <p>Email : <a href="mailto:tvliblood@donation.org.in" class="link">iblood@donation.org.in</a></p>
+      </div>
+      <div class="contact-inf" id="madurai">
+        <h2>Madurai</h2>
+        <p>2/18 American college College,<br> Madurai - 627 434, Tamilnadu</p>
+        <p>Phone : <a href="tel:+919042757290" class="link">+91 9042 757 290</a></p>
+        <p>Email : <a href="mailto:madiblood@donation.org.in" class="link">iblood@donation.org.in</a></p>
+      </div>
+      <div id="link">
+        <h2>Quick Links</h2>
+        <a class="link" href="{{ url_for('home') }}">Home</a><br>
+        <a class="link" href="{{ url_for('About') }}">About Us</a><br>
+        <a class="link" href="{{ url_for('feedback') }}">Feedback</a><br>
+        <a class="link" href="{{ url_for('Donation') }}">Fund Donate</a><br>
+        <a class="link" href="{{ url_for('blood_Donor') }}">Blood Donate Now</a><br>
+        <a class="link" href="{{ url_for('user_active_Donors') }}">Need Blood Donor</a>
+      </div>
+
+     
+
+    </div>
+
+</html>

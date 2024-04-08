@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ Req_Donnor.Name }}</title>
+    <link id="icon" rel="icon" href="{{ url_for('static', filename = 'images/icon.jpg') }}" type="images/jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        /* Side Menu Styles */
+        .side-menu {
+            position: fixed;
+            background: #f30707;
+            width: 20vw;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: width 0.3s ease;
+            z-index: 1000; /* Ensure the menu is on top of other elements */
+        }
+
+        .side-menu li {
+            font-size: 1.2rem;
+            padding: 1.2rem 2rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .side-menu li:hover {
+            background: white;
+            color: #f05462;
+        }
+        
+
+        /* Container Styles */
+        .container {
+            position: absolute;
+            right: 0;
+            width: 80vw;
+            height: 100vh;
+            background: #f1f1f1;
+        }
+
+        
+        .header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 80vw;
+            height: 10vh;
+            background: white;
+            flex: 1;
+            display: flex;
+            justify-content:space-between;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .brand-name h2 {
+            color: #f30707;
+            display: flex;
+            margin-left: 50px;
+        }
+
+        .user {
+            flex: 1;
+            display: flex;
+            margin-left: 600px;
+            align-items: center;
+        }
+
+        .btn {
+            background: #f30707;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+        }
+
+        .btn:hover {
+            color: #f30707;
+            background: white;
+            padding: 3px 8px;
+            border: 2px solid #f30707;
+        }
+
+        /* Content Styles */
+        .content {
+            position: relative;
+            margin-top: 10vh;
+            min-height: 90vh;
+            background: #f1f1f1;
+            padding: 20px;
+        }
+
+        .item {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #444;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+        }
+        .bottom{
+            background: #f30707;
+            color: white;
+            padding: 5px 10px;
+            display: inline-block;
+            text-align: space-between;
+            border-radius: 10px;
+            
+        }
+        .bottom:hover{
+            color: #f30707;
+            background: white;
+            padding: 3px 8px;
+            border: 2px solid #f30707;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        
+        }
+        #btn1{
+            display: flex;
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="side-menu">
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('admin_active_Donors', filter = 'None') }}">Active Donors</a></li>
+            <li><a href="{{ url_for('donation_recived') }}">Donation Fund</a></li>
+            <li><a href="{{ url_for('admin_view_feedback') }}">Users Feedback</a></li>
+            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="brand-name">
+                <h2><i class="fas fa-hand-holding-heart"></i>I Donation Organisation</h2>
+            </div>
+            <div class="user">
+                <a href="{{ url_for('logout') }}" class="btn">Log Out</a>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="item">
+                <p>Donor Name</p>
+                <h2>{{ Req_Donnor.Name }}</h2>
+            </div>
+            <div class="item">
+                <p>Donor Blood Group </p>
+                <h2>{{ Req_Donnor.BloodGroup }}</h2>
+            </div>
+            <div class="item">
+                <p>Donor Phone </p>
+                <h2>{{ Req_Donnor.Phone }}</h2>
+            </div>
+            <div class="item">
+                <p>Donor Gender </p>
+                <h2>{{ Req_Donnor.Gender }}</h2>
+            </div>
+            <div class="item">
+                <p>Donor Address </p>
+                <h2>{{ Req_Donnor.Address }}</h2>
+            </div>
+            <div class="item">
+                <p>Donor District </p>
+                <h2>{{ Req_Donnor.District }}</h2>
+            </div>
+            <div class="item">
+                <p>Donor State </p>
+                <h2>{{ Req_Donnor.State }}</h2>
+            </div>
+            <div class="item">
+                <p>Donor Message </p>
+                <h2>{{ Req_Donnor.Message }}</h2>
+            </div>
+            <div class="button-container">
+                <div class="bottom" id="btn1">
+                    <a href='{{ url_for("dashboard") }}'>Back</a>
+                </div>
+                <div class="bottom">
+                    <a onclick="return confirm('Do you want cancel the Request?');" href="{{ url_for('cancel_req', id = Req_Donnor.id) }}">Cancel Request</a>
+                </div>
+                <div class="bottom">
+                    <a onclick="return confirm('Do you want Approve the Request?');" href="{{ url_for('approve_req',id = Req_Donnor.id)  }}">Verify Request</a>
+                </div>
+            </div>
+        </div>        
+    </div>
+    
+</body>
+</html>

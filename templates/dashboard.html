@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="icon" rel="icon" href="{{ url_for('static', filename = 'images/icon.jpg') }}" type="images/jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Admin Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        .brand-name img{
+            height: 30px;
+            width: 35px;
+            border-radius: 50%;
+        }
+        body {
+            min-height: 100vh;
+        }
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+        li {
+            list-style: none;
+            
+        }
+        h1,
+        h2 {
+            color: #444;
+            margin-left: 20px;
+        }
+        h3 {
+            color: #999;
+        }
+        .btn {
+            background: #f30707;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+        }
+        .btn:hover {
+            color: #f30707;
+            background: white;
+            padding: 3px 8px;
+            border: 2px solid #f30707;
+        }
+        .title {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 15px 10px;
+            border-bottom: 2px solid #999;
+        }
+        table {
+            padding: 10px;
+        }
+        th,
+        td {
+            text-align: left;
+            padding: 8px;
+        }
+        .side-menu {
+            position: fixed;
+            background: #f30707;
+            width: 20vw;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: width 0.3s ease;
+        }
+        .side-menu .brand-name {
+            height: 10vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .side-menu li {
+            font-size: 1.2rem;
+            padding: 1.2rem 2rem;
+            color: black;
+            display: flex;
+            align-items: center;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .side-menu li:hover {
+            background: white;
+            color: #f05462;
+        }
+
+        .container {
+            position: absolute;
+            right: 0;
+            width: 80vw;
+            height: 100vh;
+            background: #f1f1f1;
+        }
+        .container .header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 80vw;
+            height: 10vh;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        .container .header .nav {
+            width: 90%;
+            display: flex;
+            align-items: center;
+        }
+        .container .header .nav .search {
+            flex: 3;
+            display: flex;
+            justify-content: center;
+        }
+        .container .header .nav .search input[type=text] {
+            border: none;
+            background: #f1f1f1;
+            padding: 10px;
+            width: 50%;
+        }
+        .container .header .nav .search button {
+            width: 40px;
+            height: 40px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container .header .nav .search button img {
+            width: 30px;
+            height: 30px;
+        }
+        .container .header .nav .user {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .container .header .nav .user img {
+            width: 40px;
+            height: 40px;
+        }
+        .container .header .nav .user .img-case {
+            position: relative;
+            width: 50px;
+            height: 50px;
+        }
+        .container .header .nav .user .img-case img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .container .content {
+            position: relative;
+            margin-top: 10vh;
+            min-height: 90vh;
+            background: #f1f1f1;
+        }
+        .container .content .cards {
+            padding: 20px 15px;
+            display: flex;
+            align-items: center;
+            justify-content:space-evenly;
+            flex-wrap: wrap;
+        }
+        .container .content .cards .card {
+            width: 250px;
+            height: 150px;
+            background: white;
+            margin: 20px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        .container .content .content-2 {
+            min-height: 60vh;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        .container .content .content-2 .recent-payments {
+            min-height: 50vh;
+            flex: 5;
+            background: white;
+            margin: 0 25px 25px 25px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            display: flex;
+            flex-direction: column;
+        }
+        .container .content .content-2 .new-students {
+            flex: 2;
+            background: white;
+            min-height: 50vh;
+            margin: 0 25px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            display: flex;
+            flex-direction: column;
+        }
+        .container .content .content-2 .new-students table td:nth-child(1) img {
+            height: 40px;
+            width: 40px;
+        }
+        @media screen and (max-width: 1050px) {
+            .side-menu li {
+                font-size: 18px;
+            }
+        }
+        @media screen and (max-width: 940px) {
+            .side-menu li span {
+                display: none;
+            }
+            .side-menu {
+                align-items: center;
+            }
+            .side-menu li img {
+                width: 40px;
+                height: 40px;
+            }
+            .side-menu li:hover {
+                background: #f05462;
+                padding: 8px 38px;
+                border: 2px solid white;
+            }
+        }
+        @media screen and (max-width:536px) {
+            .brand-name h1 {
+                font-size: 16px;
+            }
+            .container .content .cards {
+                justify-content: center;
+            }
+            .side-menu li img {
+                width: 30px;
+                height: 30px;
+            }
+            .container .content .content-2 .recent-payments table th:nth-child(2),
+            .container .content .content-2 .recent-payments table td:nth-child(2) {
+                display: none;
+            }
+}
+    </style>
+</head>
+
+<body>
+    <div class="side-menu">
+        
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a> </li>
+            <li><a href="{{ url_for('admin_active_Donors', filter = 'None') }}">Active Donors</a> </li>
+            <li><a href="{{ url_for('donation_recived') }}">Donation Fund</a> </li>
+            <li><a href="{{ url_for('admin_view_feedback') }}">Users Feedback</a> </li>
+            <li><a onclick="return confirm('Do you want logout?');" href="{{ url_for('logout') }}">log Out</a> </li>
+            
+        </ul>
+    </div>
+    <div class="container">
+        <div class="header">
+            <div class="nav">
+                <div class="user">
+                    <div class="brand-name">
+                    <h2 style="display: inline-block;color: #f30707;"><i class="fas fa-hand-holding-heart"></i>I Donation Organisation</h2>
+                    </div>
+                    <a onclick="return confirm('Do you want logout?');" href="{{ url_for('logout') }}" class="btn">log out</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content"><br>
+            <h1 style="color: #f30707;text-decoration: underline;">Active Donors</h1>
+            <div class="cards">
+                <div class="card">
+                    <div class="box">
+                        <h1><a href="{{ url_for('admin_active_Donors', filter = 'None') }}">{{ Total }}</a></h1>
+                        <h3>Total Donners</h3>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <h1><a href="{{ url_for('admin_active_Donors', filter = 'A+') }}">{{ A_Positive }}</a></h1>
+                        <h3>A+</h3>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <h1><a href="{{ url_for('admin_active_Donors', filter = 'A-') }}">{{ A_Negative }}</a></h1>
+                        <h3>A-</h3>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <h1><a href="{{ url_for('admin_active_Donors', filter = 'B+') }}">{{ B_Positive }}</a></h1>
+                        <h3>B+</h3>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <h1><a href="{{ url_for('admin_active_Donors', filter = 'B-') }}">{{ B_Negative }}</a></h1>
+                        <h3>B-</h3>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <h1><a href="{{ url_for('admin_active_Donors', filter = 'AB+') }}">{{ AB_Positive }}</a></h1>
+                        <h3>AB+</h3>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <h1><a href="{{ url_for('admin_active_Donors', filter = 'AB-') }}">{{ AB_Negative }}</a></h1>
+                        <h3>AB-</h3>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <h1><a href="{{ url_for('admin_active_Donors', filter = 'O+') }}">{{ O_Positive }}</a></h1>
+                        <h3>O+</h3>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <h1><a href="{{ url_for('admin_active_Donors', filter = 'O-') }}">{{ O_Negative }}</a></h1>
+                        <h3>O-</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="content-2">
+                <div class="recent-payments">
+                    <div class="title">
+                        <h2>Willing to Donate blood</h2>
+                    </div>
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Blood Group</th>
+                            <th>Native</th>
+                            <th>Option</th>
+                        </tr>
+                        {% if Donners %}
+                            {% for donor in Donners %}
+                                <tr>
+                                    <td>{{ donor.Name }}</td>
+                                    <td>{{ donor.BloodGroup }}</td>
+                                    <td>{{ donor.District }}</td>
+                                    <td><a href="{{ url_for('verify_donnor', id=donor.id) }}" class="btn">View all</a></td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="4" style="text-align: center;color:#f30707;">No one has given a request now</td>
+                            </tr>
+                        {% endif %}
+                    </table>
+                </div>
+                <div class="new-students">
+                    <div class="title">
+                        <h2>Donation</h2>
+                        <a href="{{ url_for('donation_recived') }}" class="btn">View All</a>
+                    </div>
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Description</th>
+                        </tr>
+                        {% for i in range(3) %}
+                                <tr>
+                                    <td>{{ Donation[i].Name }}</td>
+                                    <td>{{ Donation[i].Donation_amount }}</td>
+                                    <td>{{ Donation[i].Message }}</td>
+                                </tr>
+                        {% endfor %}
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
