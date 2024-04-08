@@ -380,12 +380,12 @@
                             <th>Amount</th>
                             <th>Description</th>
                         </tr>
-                        {% for i in range(3) %}
-                                <tr>
-                                    <td>{{ Donation[i].Name }}</td>
-                                    <td>{{ Donation[i].Donation_amount }}</td>
-                                    <td>{{ Donation[i].Message }}</td>
-                                </tr>
+                        {% for donation in Donation[:3] %}
+                            <tr>
+                                <td>{{ donation.Name }}</td>
+                                <td>{{ donation.Donation_amount }}</td>
+                                <td>{{ donation.Message }}</td>
+                            </tr>
                         {% endfor %}
                     </table>
                     
