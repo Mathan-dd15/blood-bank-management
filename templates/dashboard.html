@@ -380,13 +380,17 @@
                             <th>Amount</th>
                             <th>Description</th>
                         </tr>
-                        {% for donation in Donation[:3] %}
-                            <tr>
-                                <td>{{ donation.Name }}</td>
-                                <td>{{ donation.Donation_amount }}</td>
-                                <td>{{ donation.Message }}</td>
-                            </tr>
-                        {% endfor %}
+                        {% if Donation %}
+                            {% for donation in Donation[:3] %}
+                                <tr>
+                                    <td>{{ donation.Name }}</td>
+                                    <td>{{ donation.Donation_amount }}</td>
+                                    <td>{{ donation.Message }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <td colspan="3" style="text-align: center; color: #f30707;">No One Give Donation</td>
+                        {% endif %}
                     </table>
                     
                 </div>
